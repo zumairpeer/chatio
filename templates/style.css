@@ -13,10 +13,11 @@ body{
 
 #mainWrapper{
 	padding: 15px;
-	
+	display: none;
 }
 
 #chatWrapper{
+	float: left;
 	border: 2px solid #111;
 	border-radius: 5px;
 	padding: 10px;
@@ -60,7 +61,7 @@ body{
 	width: 400px;
 	box-shadow: 2px 2px 4px #bbb;
 	color: #333;
-	display: none;
+	
 }
 
 #username{
@@ -88,4 +89,14 @@ body{
 
 #chatWindow{
 	font-weight: normal;
+	max-height: 500px;
+}
+
+#userWrapper{
+	float: left;
+	border: 1px #ccc red;
+	padding: 10px;
+	margin-left: 15px;
+	width: 150px;
+
 }

@@ -10,19 +10,23 @@
 		<div id="usernameWrapper">
 			<h3>Chat IO</h3>
 			<p>Create Username</p>
+			<div id="error"></div>
 			<form id="usernameForm">
 				<input type="text" id="username" size="35">
 				<input type="submit" value="Submit" id="userSubmit">
 			</form>
 		</div>
 		<div id="mainWrapper">
-			<h3>Chat IO</3>
+			<h3>Chat IO</h3>
 			<div id="chatWrapper">
 				<div id="chatWindow"></div>
 				<form id="chatForm">
 					<input type="text" id="message" size="40" placeholder="Enter message">
 					<input type="submit" value="Send" id="messageSubmit">
 				</form>
+			</div>
+			<div id="userWrapper">
+				<div id="users"></div>
 			</div>
 		</div>
 	</div>
@@ -34,15 +38,51 @@
 			var chatForm = $('#chatForm');
 			var message = $('#message');
 			var chat = $('#chatWindow');
+			var usernameForm = $('#usernameForm');
+			var users = $('#users');
+			var username = $('#username');
+			var error = $('#error');
+			
+			usernameForm.submit(function(event){
+				event.preventDefault();
+				console.log('user added');
+				socket.emit('new_user', username.val(), function(data){
+					console.log(data);
+					if(data){
+						$('#usernameWrapper').hide();
+						$('#mainWrapper').show();
+					}
+					else{
+						error.html('username is taken');
+					}
+				});
+				username.val('');
+			});
+
+
 			chatForm.submit(function(event){
 				event.preventDefault();
 				console.log('submitted');
 				socket.emit('message_sent', message.val());
 				message.val('');
 			});
+
+			socket.on('usernames', function(data){
+				console.log('username', + data);
+				var html = '';
+				for(var i=0; i<data.length; i++){
+					html += data[i] + '<br>';
+					
+				}
+				console.log(html);
+				console.log(users);
+				users.html(html);
+				console.log(users);
+			});
+
 			socket.on('new_message', function(data){
 				console.log(data.msg + 'sent');
-				chat.append(data.msg + '<br>');
+				chat.append('<strong>' +data.user +':</strong>' + data.msg + '<br>');
 			})
 		})
 	</script>
