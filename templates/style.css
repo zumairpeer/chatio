@@ -85,3 +85,7 @@ body{
 	background: #aaa;
 	color: white;
 }
+
+#chatWindow{
+	font-weight: normal;
+}

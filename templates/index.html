@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Chat IO</title>
-	<link rel="stylesheet" href="style.css">
+	<link type="text/css" rel="stylesheet" href="/templates/style.css">
 	</link>
 </head>
 <body>
@@ -18,14 +18,33 @@
 		<div id="mainWrapper">
 			<h3>Chat IO</3>
 			<div id="chatWrapper">
-				<div id="chatWindow">
-					<form id="chatForm">
-						<input type="text" id="message" size="40" placeholder="Enter message">
-						<input type="submit" value="Send" id="messageSubmit">
-					</form>
-				</div>
+				<div id="chatWindow"></div>
+				<form id="chatForm">
+					<input type="text" id="message" size="40" placeholder="Enter message">
+					<input type="submit" value="Send" id="messageSubmit">
+				</form>
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function(){
+			var socket = io.connect();
+			var chatForm = $('#chatForm');
+			var message = $('#message');
+			var chat = $('#chatWindow');
+			chatForm.submit(function(event){
+				event.preventDefault();
+				console.log('submitted');
+				socket.emit('message_sent', message.val());
+				message.val('');
+			});
+			socket.on('new_message', function(data){
+				console.log(data.msg + 'sent');
+				chat.append(data.msg + '<br>');
+			})
+		})
+	</script>
 </body>
 </html>
