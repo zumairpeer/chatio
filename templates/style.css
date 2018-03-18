@@ -1,0 +1,87 @@
+body{
+	background: #eee;
+}
+
+#container{
+	margin: 0 auto;
+	width: 700px;
+}
+
+#chatWindow{
+	height: 300px;
+}
+
+#mainWrapper{
+	padding: 15px;
+	
+}
+
+#chatWrapper{
+	border: 2px solid #111;
+	border-radius: 5px;
+	padding: 10px;
+	width: 400px;
+	height: 600px;
+}
+
+#chatForm{
+	position: absolute;
+	bottom: 100px;
+	margin: 0 auto;
+}
+
+#messageSubmit{
+	float: right;
+	height: 35px;
+	width: 70px;
+	border: none;
+	border-radius: 2px;
+	background: #bbb;
+	cursor: pointer;
+	transition: 0.3;
+	outline-style: none;
+}
+
+#messageSubmit:hover{
+
+}
+
+#message{
+	outline-style: none;
+	height: 30px
+}
+
+#usernameWrapper{
+	background: #ddd;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	margin: inherit;
+	padding: 10px;
+	width: 400px;
+	box-shadow: 2px 2px 4px #bbb;
+	color: #333;
+	display: none;
+}
+
+#username{
+	height: 30px;
+	border: none;
+	outline-style: none;
+}
+
+#userSubmit{
+	height: 30px;
+	width: 70px;
+	border: none;
+	border-radius: 2px;
+	background: #eee;
+	cursor: pointer;
+	transition: 0.3;
+	float: right;
+	outline-style: none;
+}
+
+#userSubmit:hover{
+	background: #aaa;
+	color: white;
+}
